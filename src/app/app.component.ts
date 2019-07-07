@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable, from } from 'rxjs';
+import { PartialObserver } from 'rxjs/src/internal/types';
 
 @Component({
   selector: 'app-root',
@@ -6,11 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   constructor() {
-  }
+    const arr$: Observable<number> = from([2, 4, 6]);
 
-  getName(): void {
-    if(1<2){ //always true
-      console.log("Welcome !")
-    }
+    const observer: PartialObserver<number> = {
+      next: value => console.log(value),
+      error: err => console.log(err),
+      complete: () => console.log('Done!'),
+    };
+
+    arr$.subscribe(observer);
   }
 }
