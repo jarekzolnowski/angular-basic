@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 
 @Component({
   selector: 'app-root',
@@ -7,21 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   constructor() {
-    const numbers: number[] = [2, 4, 6];
+    const click$ = fromEvent(document, 'click');
 
-    let evenNumbers$ = Observable.create(subscriber => {
-      for(let number of numbers) {
-        if(number % 2 === 0) {
-          subscriber.next(number);
-        } else {
-          subscriber.error(err => console.log(err));
-        }
-      }
-
-      subscriber.complete();
-    });
-
-    evenNumbers$.subscribe(
+    click$.subscribe(
       value => console.log(value),
       err => console.log(err),
       () => console.log('Done!'),
