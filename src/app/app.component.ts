@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, from } from 'rxjs';
-import { PartialObserver } from 'rxjs/src/internal/types';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +7,24 @@ import { PartialObserver } from 'rxjs/src/internal/types';
 })
 export class AppComponent {
   constructor() {
-    const arr$: Observable<number> = from([2, 4, 6]);
+    const numbers: number[] = [2, 4, 6];
 
-    const observer: PartialObserver<number> = {
-      next: value => console.log(value),
-      error: err => console.log(err),
-      complete: () => console.log('Done!'),
-    };
+    let evenNumbers$ = Observable.create(subscriber => {
+      for(let number of numbers) {
+        if(number % 2 === 0) {
+          subscriber.next(number);
+        } else {
+          subscriber.error(err => console.log(err));
+        }
+      }
 
-    arr$.subscribe(observer);
+      subscriber.complete();
+    });
+
+    evenNumbers$.subscribe(
+      value => console.log(value),
+      err => console.log(err),
+      () => console.log('Done!'),
+    );
   }
 }
