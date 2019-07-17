@@ -9,6 +9,7 @@
     <div class="col">
       <h5>Body</h5>
     </div>
+    <app-button class="d-flex justify-content-end" [label]="'Add'" (action)="addPost($event)"></app-button>
   </div>
   <div class="row bg-white p-2">
     <div class="col-1">
@@ -38,7 +39,10 @@
 <p>&nbsp;</p>
 <div class="container">
   <div class="card">
-    <h5 class="card-header bg-dark text-light">Post list</h5>
+    <h5 class="card-header bg-dark text-light d-flex justify-content-between">
+      <span>Post list</span>
+      <app-button class="d-flex justify-content-end" [label]="'Add'" (action)="addPost($event)"></app-button>
+    </h5>
     <div class="card-body bg-light">
       <h5 class="card-title">Sunt aut facere repellat provident occaecati excepturi optio reprehenderit</h5>
       <p class="card-text">Quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto</p>
