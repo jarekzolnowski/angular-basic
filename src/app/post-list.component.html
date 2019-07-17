@@ -1,0 +1,16 @@
+<div class="card">
+  <h5 class="card-header bg-dark text-light d-flex justify-content-between">
+    <span>Post list</span>
+    <app-button class="d-flex justify-content-end" [label]="'Add'" (action)="addPost(postToAdd)"></app-button>
+  </h5>
+  <div class="card-body bg-light">
+    <h5 class="card-title">{{posts[0].title}}</h5>
+    <p class="card-text">{{posts[0].body}}</p>
+    <a href="#" class="card-link">More details</a>
+  </div>
+  <div class="card-body bg-light">
+    <h5 class="card-title">{{posts[1].title}}</h5>
+    <p class="card-text">{{posts[1].body}}</p>
+    <a href="#" class="card-link">More details</a>
+  </div>
+</div>
