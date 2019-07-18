@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   }
 
   addPost(post: Post): void {
-    // implement adding
+    this.posts = [post, ...this.posts];
   }
 }
 
